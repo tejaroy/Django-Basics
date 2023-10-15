@@ -1,3 +1,7 @@
 # Django-Basics
 
-#Create Django project
+## Create Django project
+
+``` py
+django-admin startproject projectname
+```
