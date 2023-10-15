@@ -1,4 +1,4 @@
-# Django-Basics
+# Django-Project-Setup
 
 # Step: 1
 
