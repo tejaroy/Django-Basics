@@ -21,4 +21,9 @@ python -m venv envname
 
 # Step: 3
 ## Activting virtual environment
+After creating virtual environment we need active the virtual environment for activing environment we can use below command.
 
+```py
+envname\Scripts\activate
+```
+![image](https://github.com/tejaroy/Django-Basics/assets/71242899/2ffa57d7-e4a6-44f0-8e4c-8d96a0308c60)
