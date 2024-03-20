@@ -1,0 +1,272 @@
+-------------------------------
+putty
+-------------------------------
+
+byobu
+sudo -s
+systemctl restart eregistrybc.service
+cltr r
+export
+yarn build
+systemct1 restart nginx
+
+#To check the logs
+htop
+
+--color
+putty-256color
+ -----------------------------------
+apache server
+sudo /opt/lampp/lampp start
+sudo /opt/lampp/lampp status
+sudo /opt/lampp/lampp stop
+
+------------------------------------
+
+acess
+chmod 777 -r dir
+
+----------------------------------------
+To restart the postgresql in server
+sudo service postgresql restart
+
+
+------------------------------------------------
+To check project logs
+sudo journalctl -u eregistrybc.service -r
+
+------------------------------------------------
+To delele file in sever 
+rm
+
+----------------------------------------
+To see storage of all file in sever 
+df
+
+----------------------------------------
+To see sever stroage
+df -h
+
+----------------------------------------
+
+
+
+To change anything in the Scheduler
+1- crontab -e
+After changing cron reload
+2- sudo service cron reload
+3- sudo service cron restart
+4- restart Celery worker - use up arrow to get the commond
+5- Restart calery beat - use up arrow to get the commond
+
+
+----------------------------------------
+--config to API timeout
+ExecStart=/home/ubuntu/workspace/venvFin/bin/gunicorn --timeout 180 -w 6 --threads=2 -b 127.0.0.1:5000 flask_app:app
+cd /etc/system1
+sudo systemctl daemon-reload
+sudo systemctl start eregistrybc.service
+sudo systemctl enable eregistrybc.service
+
+----------------------------------------
+--to check ports have access or not
+sudo ufw status
+
+----------------------------------------
+## Postgresql
+Step 1 — Installing PostgreSQL
+
+sudo apt update
+sudo apt install postgresql postgresql-contrib
+sudo systemctl start postgresql.service
+
+systemctl restart postgresql
+systemctl status postgresql
+
+----------------------------------------
+## DB Commands
+sudo -i -u postgres
+psql
+\q
+exit
+or
+sudo -u postgres psql
+\conninfo
+- to see a list of all the databases that are available on a server
+\l
+- to see a list of all the users with their privileges
+\du
+- to see a list of all the tables
+\dt
+- Exit out of the PostgreSQL
+\q
+
+
+
+----------------------------------------
+-- Create User 
+sudo -u postgres createuser <username>
+-- Create DATABASE
+sudo -u postgres createdb <dbname>
+or
+CREATE DATABASE dbname;
+
+-- Drop database
+DROP DATABASE [IF EXISTS] name;
+
+-- Alter/CHange PASSWORD
+alter user <username> with encrypted password '<password>';
+
+-- Granting privileges on database\q
+
+\c <dbname>
+grant all privileges on database <dbname> to <username>;
+\q
+
+
+----------------------------------------
+
+## Install postgis
+sudo apt update
+sudo apt install postgis postgresql-14-postgis-3
+sudo -u postgres psql
+\c <dbname>
+CREATE EXTENSION postgis;
+
+
+
+-- Change PostgreSQL config
+###### 1.
+>sudo nano /etc/postgresql/10/main/postgresql.conf
+-----------------------
+CONNECTIONS AND AUTHENTICATION
+-------------------------
+Change line:
+```
+#listen_addresses = 'localhost'
+```
+to:
+```
+listen_addresses = '*'
+```
+
+
+
+###### 2.
+>sudo nano /etc/postgresql/10/main/pg_hba.conf
+Change line:
+```
+# IPv4 local connections:
+host    all             all             127.0.0.1/32            md5
+```
+to:
+```
+host    all             all             0.0.0.0/0            md5
+```
+###### 3. Add the rule to linux firewall:
+```
+sudo ufw allow 5432/tcp
+sudo systemctl restart postgresql
+
+----------------------------------------
+
+To View print statement in the Ubuntu -
+
+Last 20 records-
+sudo tail -n 20 /var/log/syslog
+
+For Latest Records _
+sudo tail -f /var/log/syslog
+
+----------------------------------------
+
+
+
+
+
+
+
+
+
+
+----VPC---
+ssh ubuntu@10.0.201.180 -i ~/.ssh/production-isolated-vpc-key-pair.pem  ---FP
+ssh ubuntu@10.0.201.40 -i ~/.ssh/production-isolated-vpc-key-pair.pem ---VC
+ubuntu@13.233.42.179
+
+
+
+tail 2000 file.log
+
+/var/log/cron.log
+
+
+grep cron /var/log/syslog | tail -1
+
+
+
+---------------------------------------------
+
+restart postgre 
+sudo service postgresql restart
+sudo systemctl enable postgresql
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+Directory Commands
+
+mkdir	
+Creates a new directory. If path is not specified, new directory is created within working directory.	
+$ mkdir /path/to/Test 
+# creates a directory named 'Test' along the specified path
+
+
+rm -rf	
+Deletes the target directory, including all files/directories within the directory.	
+$ rm -rf /path/to/Test
+# deletes the 'Test' directory and its contents
+
+cd	
+Changes the current working directory. By default, /home/username/ is the working directory when opening a terminal or using the cd command without a path.
+$ cd /path/to/Test
+# changes the working directory to 'Test'
+
+ls
+Prints out the contents, including files and directories, within a parent directory. If no path is specified, ls prints the contents of the working directory.	
+$ ls /path/to/Test
+# prints the contents of 'Test'
+
+cp -R	
+Copies the contents of a source directory to a target directory.	
+$ cp -R /path/to/Source /path/to/Destination
+# copies the contents of 'Source' to 'Destination'
+
+mv
+Renames an existing directory.	
+$ mv Source Target
+# renames a directory 'Source' to 'Target'
+
+grep -ir	
+Recursively searches files in a directory for a pattern.	
+$ grep -ir "test"
+# displays all occurrences of the string "test" in the working directory 
